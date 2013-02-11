@@ -120,6 +120,8 @@ if(is_admin()) {
 	return;
 }
 
+header('Vary: Accept-Encoding, Avail-Dictionary');
+
 if(strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'sdch') === False)
 	//no sdch suport
 	return;
