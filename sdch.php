@@ -607,7 +607,7 @@ class SDCH {
 		//clone the dict array
 		//dicts are mutable and we can't let them be changed
 		//lest they lose sync with their id's
-		$ret = [];
+		$ret = array();
 		foreach($this->dicts as $k => $v)
 			$ret[$k] = clone $v;
 		
