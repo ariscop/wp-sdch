@@ -678,7 +678,7 @@ function main($argv) {
 		case '--load':
 			$cmd = array_pop($argv);
 			$raw = file_get_contents($cmd);
-			$dict = unseralize($raw);
+			$dict = unserialize($raw);
 			break;
 		case '-r':
 		case '--raw':
