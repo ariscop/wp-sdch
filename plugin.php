@@ -105,6 +105,10 @@ if(count($match) > 1) {
 	$dict = $sdch->get($match[1]);
 	if($dict !== False) {
 		$raw = $dict->__toString();
+        if(strpos($_SERVER['ACCEPT_ENCODING'], "gzip") !== false) {
+            $raw = gzencode($raw);
+            header('Content-Encoding: gzip');
+        }
 		$len = strlen($raw);
 		header('Content-Type: application/x-sdch-dictionary');
 		header("Content-Length: {$len}");
