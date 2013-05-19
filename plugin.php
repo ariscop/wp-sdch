@@ -120,6 +120,7 @@ if(is_admin()) {
 	return;
 }
 
+//TODO: Cache-Control: private=Get-Dictionary
 header('Vary: Accept-Encoding, Avail-Dictionary');
 
 if(strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'sdch') === False)
@@ -131,8 +132,9 @@ $sdch->advertise();
 ob_start(function($html) use ($sdch) {
 	$data = $sdch->compress($html);
 	if(is_string($data)) {
+		$data = gzencode($data);
 		$len = strlen($data);
-		header('Content-Encoding: sdch');
+		header('Content-Encoding: sdch, gzip');
 		header("Content-Length: {$len}");
 		return $data;
 	}
